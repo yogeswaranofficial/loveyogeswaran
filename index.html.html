@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Valentine's Day ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle, #ff4d6d, #590d22);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: 'Segoe UI', sans-serif;
+        perspective: 1200px;
+        color: #fff;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        transform-style: preserve-3d;
+    }
+
+    /* IMAGE STYLES */
+    .side-img {
+        width: 220px;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255, 180, 200, 0.7);
+        transform: translateZ(80px);
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .right {
+        animation-delay: 2s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) translateZ(80px); }
+        50% { transform: translateY(-15px) translateZ(80px); }
+    }
+
+    /* CENTER SCENE */
+    .scene {
+        text-align: center;
+        transform-style: preserve-3d;
+        animation: rotateScene 12s infinite linear;
+    }
+
+    @keyframes rotateScene {
+        from { transform: rotateY(0deg); }
+        to { transform: rotateY(360deg); }
+    }
+
+    /* HEART */
+    .heart {
+        width: 120px;
+        height: 120px;
+        background: red;
+        position: relative;
+        transform: rotate(-45deg);
+        margin: auto;
+        box-shadow: 0 0 40px rgba(255, 0, 80, 0.9);
+        animation: beat 1.2s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        width: 120px;
+        height: 120px;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .heart::before {
+        top: -60px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: 60px;
+        top: 0;
+    }
+
+    @keyframes beat {
+        0%, 100% { transform: scale(1) rotate(-45deg); }
+        50% { transform: scale(1.2) rotate(-45deg); }
+    }
+
+    h1 {
+        margin-top: 30px;
+        font-size: 2.2rem;
+        text-shadow: 0 0 10px #ffccd5;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        color: #ffe5ec;
+        margin-top: 10px;
+    }
+
+    /* FLOATING HEARTS */
+    .floating-heart {
+        position: absolute;
+        color: pink;
+        font-size: 22px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+        from {
+            transform: translateY(100vh);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+
+        .side-img {
+            width: 180px;
+            height: 260px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT IMAGE -->
+    <img src="Harshini i love you.jpeg" class="side-img left" alt="Harshini">
+
+    <!-- CENTER -->
+    <div class="scene">
+        <div class="heart"></div>
+        <h1>Happy Valentine's Day 💖</h1>
+        <h2>Harshini, I love you ❤️</h2>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <img src="yogeswaran.jpeg" class="side-img right" alt="Yogeswaran">
+
+</div>
+
+<script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
